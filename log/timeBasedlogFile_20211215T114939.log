@@ -1,0 +1,2 @@
+1229 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 96.0.4664.45 (resolved driver for Chrome 96)
+1254 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\kpetkowska\.cache\selenium\chromedriver\win32\96.0.4664.45\chromedriver.exe

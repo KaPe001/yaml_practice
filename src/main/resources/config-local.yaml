@@ -1,0 +1,10 @@
+environment:
+  demo:
+    url: http://kotuszkowo.pl
+    title: Kotuszkowo- blog o kotach
+  uat:
+    url: https://www.filmweb.pl/
+    title: Filmweb - filmy takie jak Ty!
+  prod:
+    url: http://logback.qos.ch/
+    title: Logback Home
