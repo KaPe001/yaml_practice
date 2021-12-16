@@ -25,37 +25,10 @@ public class BrowserEnvironment {
         this.webBrowserImplicitTimeOut = 5;
         this.attachScreenShot = true;
         this.browserName = PropertyStore.BROWSER.isSpecified() ? PropertyStore.BROWSER.getStringValue() : this.browserName;
-        // BrowserType.setBrowser(this.browserName.toUpperCase());
-        //this.setEnvironmentName(PropertyStore.BROWSER_ENVIRONMENT.isSpecified() ? PropertyStore.BROWSER_ENVIRONMENT.getValue().toUpperCase() : "LOCAL");
-        this.initBrowserSettings();
+//        BrowserType.setBrowser(this.browserName.toUpperCase());
+//        this.setEnvironmentName(PropertyStore.BROWSER_ENVIRONMENT.isSpecified() ? PropertyStore.BROWSER_ENVIRONMENT.getValue().toUpperCase() : "LOCAL");
     }
 
-    public String getBrowserName() {
-        return this.browserName;
-    }
-
-    public boolean isHeadlessBrowser() {
-        return this.headlessBrowser;
-    }
-
-    public int getWebBrowserImplicitTimeOut() {
-        return this.webBrowserImplicitTimeOut;
-    }
-
-    public boolean isAttachScreenShotEnabled() {
-        return this.attachScreenShot;
-    }
-
-    public int getWebElementTimeOut() {
-        return this.webElementTimeOut;
-    }
-
-    private void initBrowserSettings() {
-//        this.webElementTimeOut = PropertyStore.BROWSER_WEBELEMENT_TIMEOUT.isSpecified() ? PropertyStore.BROWSER_WEBELEMENT_TIMEOUT.getIntValue() : this.webElementTimeOut;
-//        this.webBrowserImplicitTimeOut = PropertyStore.BROWSER_IMPLICIT_TIMEOUT.isSpecified() ? PropertyStore.BROWSER_IMPLICIT_TIMEOUT.getIntValue() : this.webBrowserImplicitTimeOut;
-//        this.attachScreenShot = PropertyStore.BROWSER_ATTACH_SCREENSHOT.isSpecified() ? PropertyStore.BROWSER_ATTACH_SCREENSHOT.getBoolean() : this.attachScreenShot;
-//        this.headlessBrowser = PropertyStore.BROWSER_HEADLESS.getBoolean();
-    }
 
     public WebDriver getDriver() throws IOException {
         switch (this.browserName) {
@@ -65,8 +38,9 @@ public class BrowserEnvironment {
                 optionsChrome.addArguments("start-maximized");
                 webdriver = new ChromeDriver(optionsChrome);
                 driver = new EventFiringWebDriver(webdriver);
-//                YamlReader yamlReader = new YamlReader();
-                driver.get(System.getProperty("webUrl"));
+                YamlReader yamlReader = new YamlReader();
+                String url = yamlReader.getConfigModel().getEnvironment().switchTo().getUrl();
+                driver.get(System.getProperty("appUrl"));
                 break;
             case "firefox":
                 FirefoxOptions optionsFirefox = new FirefoxOptions();
@@ -81,25 +55,5 @@ public class BrowserEnvironment {
         }
         this.driver = driver;
         return this.driver;
-    }
-
-    public void setBrowserName(String browserName) {
-        this.browserName = browserName;
-    }
-
-    public void setHeadlessBrowser(boolean headlessBrowser) {
-        this.headlessBrowser = headlessBrowser;
-    }
-
-    public void setWebElementTimeOut(int webElementTimeOut) {
-        this.webElementTimeOut = webElementTimeOut;
-    }
-
-    public void setWebBrowserImplicitTimeOut(int webBrowserImplicitTimeOut) {
-        this.webBrowserImplicitTimeOut = webBrowserImplicitTimeOut;
-    }
-
-    public void setAttachScreenShot(boolean attachScreenShot) {
-        this.attachScreenShot = attachScreenShot;
     }
 }

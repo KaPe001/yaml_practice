@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class YamlReader {
 
-    private ConfigModel configModel;
+    private final ConfigModel configModel;
 
     public ConfigModel getConfigModel() {
         return configModel;
