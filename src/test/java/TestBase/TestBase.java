@@ -1,37 +1,40 @@
-package configuration.TestBase;
+package TestBase;
 
 import configuration.BrowserEnvironment;
-import configuration.yaml.YamlSystemProperties;
+import configuration.EnvironmentProperty;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import yaml.BaseYamlReader;
 
 import java.io.IOException;
 
-public class TestBase {
+public class TestBase extends BaseYamlReader {
     private static final Logger logger = LoggerFactory.getLogger(TestBase.class);
     protected WebDriver driver;
-    private static BrowserEnvironment browserEnvironment;
+    public static BrowserEnvironment browserEnvironment;
+    public static EnvironmentProperty environmentProperty;
 
     @BeforeAll
-    static void setDriver() throws IOException {
+    static void setUp() {
+        environmentProperty = EnvironmentProperty.getInstance();
         browserEnvironment = new BrowserEnvironment();
-        new YamlSystemProperties();
-        logger.debug("WebDriver initialized");
+        logger.info("WebDriver initialized");
     }
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void beforeEach() throws IOException {
         driver = browserEnvironment.getDriver();
-        logger.debug("Timeout");
+//        basePage = new BasePage(driver);
+        logger.debug("Driver initialized");
     }
 
     @AfterEach
-    public void tearDown(){
+    void tearDown() {
         driver.quit();
-        logger.debug("WebDriver closed properly");
+        logger.debug("Driver closed");
     }
 }

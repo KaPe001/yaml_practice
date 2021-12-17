@@ -8,19 +8,22 @@ import java.util.Objects;
 import java.util.Properties;
 
 public enum PropertyStore {
-
     BROWSER("browser"),
     ENVIRONMENT("environment");
+//    BROWSER_WEBELEMENT_TIMEOUT("browser.webelement.timeout"),
+//    BROWSER_IMPLICIT_TIMEOUT("browser.implicit.timeout"),
+//    BROWSER_HEADLESS("browser.headless"),
+//    BROWSER_ENVIRONMENT("browser.environment"),
+//    BROWSER_ATTACH_SCREENSHOT("browser.attachscreenshot");
 
     private final String value;
     private final String propertyKey;
     public static final String CONFIG_PROPERTIES = "config.properties";
     private static Properties properties = null;
 
-    PropertyStore(String key){
+    private PropertyStore(String key){
         this.value = this.retrieveValue(key);
         this.propertyKey = key;
-
     }
 
     private String retrieveValue(String key) {
@@ -67,5 +70,13 @@ public enum PropertyStore {
 
     public String getStringValue(){
         return this.retrieveValue(this.propertyKey);
+    }
+
+    public int getIntValue() {
+        return Integer.parseInt(this.retrieveValue(this.propertyKey));
+    }
+
+    public boolean getBoolean() {
+        return this.isSpecified() && Boolean.parseBoolean(this.value);
     }
 }

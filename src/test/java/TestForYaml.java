@@ -1,4 +1,4 @@
-import configuration.TestBase.TestBase;
+import TestBase.TestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -8,10 +8,6 @@ public class TestForYaml extends TestBase {
 
     @Test
     public void goToWebSite() {
-
-        String expectedTitle = System.getProperty("webTitle");
-        String actualTitle = driver.getTitle();
-
-        assertThat(actualTitle, equalTo(expectedTitle));
+        assertThat(driver.getTitle(), equalTo(getActiveObject().getTitle()));
     }
 }

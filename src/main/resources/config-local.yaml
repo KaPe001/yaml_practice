@@ -2,9 +2,15 @@ environment:
   demo:
     url: http://kotuszkowo.pl
     title: Kotuszkowo- blog o kotach
+    browser: chrome
+    active: false
   uat:
     url: https://www.filmweb.pl/
     title: Filmweb - filmy takie jak Ty!
+    browser: firefox
+    active: false
   prod:
     url: http://logback.qos.ch/
     title: Logback Home
+    browser: edge
+    active: true
