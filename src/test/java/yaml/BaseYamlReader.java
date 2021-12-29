@@ -8,7 +8,7 @@ public class BaseYamlReader {
     private YamlReader yamlReader;
     List<EnvironmentModel> environmentList;
 
-    public String setCurrentEnvironment(){
+    public String setCurrentEnvironmentUrl(){
         String url = null;
         url = getActiveObject().getUrl();
         return url;
