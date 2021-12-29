@@ -1,12 +1,9 @@
 package TestBase;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yaml.BaseYamlReader;
@@ -23,10 +20,6 @@ public class TestBase extends BaseYamlReader {
 
     @BeforeAll
     static void setUp() throws IOException {
-//        ChromeOptions optionsChrome = new ChromeOptions();
-//        WebDriverManager.chromedriver().setup();
-//        optionsChrome.addArguments("start-maximized");
-//        driver = new ChromeDriver(optionsChrome);
         yamlSystemProperties = new YamlSystemProperties();
         logger.info("WebDriver initialized");
     }
