@@ -13,6 +13,6 @@ public class TestForYaml extends TestBase {
         BrowserRunner browserRunner = new BrowserRunner();
         driver = browserRunner.runBrowser();
         assertTrue(true);
-        assertThat(driver.getTitle(), equalTo(getActiveObject().getTitle()));
+        assertThat(driver.getTitle(), equalTo(System.getProperty("title")));
     }
 }

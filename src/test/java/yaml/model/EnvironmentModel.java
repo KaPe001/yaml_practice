@@ -1,41 +1,28 @@
 package yaml.model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
 public class EnvironmentModel {
-    private String url;
-    private String title;
-    private String browser;
     private boolean active;
-
-    private String defaultBrowser = "chrome";
-
-    public String getBrowser() {
-        return StringUtils.isEmpty(browser) ? (this.browser = defaultBrowser) : this.browser;
-    }
+    Map<String,Object> properties = new HashMap<>();
 
     public boolean isActive() {
         return active;
     }
 
-    public String getUrl() {
-        return url;
+    @JsonAnySetter
+    void setProperties(String key, Object value){
+        properties.put(key, value);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public Map<String, String> getProperties(){
-        Map<String,String> properties = new HashMap<>();
-        properties.put("url", getUrl());
-        properties.put("browser", getBrowser());
-
+    @JsonAnyGetter
+    public Map<String, Object> getProperties(){
         return properties;
     }
 }

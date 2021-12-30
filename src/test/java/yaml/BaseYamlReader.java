@@ -10,7 +10,7 @@ public class BaseYamlReader {
 
     public String setCurrentEnvironmentUrl(){
         String url = null;
-        url = getActiveObject().getUrl();
+        url = System.getProperty("url");
         return url;
     }
 

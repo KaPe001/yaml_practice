@@ -13,7 +13,7 @@ public class BrowserRunner extends BaseYamlReader {
     WebDriver driver;
 
     public WebDriver runBrowser() {
-        switch (this.getActiveObject().getBrowser()) {
+        switch (System.getProperty("browser")) {
             case "chrome":
                 ChromeOptions optionsChrome = new ChromeOptions();
                 WebDriverManager.chromedriver().setup();
